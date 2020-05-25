@@ -1,0 +1,42 @@
+{% extends "student_app/studentapp_base.html" %}
+{% block body_block %}
+<p></p>
+<p></p>
+  <div class="jumbotron">
+    <h1>Welcome to the {{school_details.name}} Detail Page</h1>
+    <h2 class="third">{{school_details.name}} Details:</h2>
+    <p class="five">Id_num: {{school_details.id}}</p>
+    <p class="five">Name: {{school_details.name}}</p>
+    <p class="five">Location: {{school_details.location}}</p>
+    <h3 class="third">Students Details :</h3>
+
+
+      <table border="2px" id="row">
+        <thead class="third">
+          <th>Student Name</th>
+          <th>Registration No</th>
+          <th>Phone No</th>
+          <th>Standard</th>
+        </thead>
+{% for student in school_details.students.all %}
+        <tr>
+
+          <td class="four">{{student.studentName}}</td>
+          <td class="four">{{student.stuentRegisterNo}}</td>
+          <td class="four">{{student.studentPhoneNo}}</td>
+          <td class="four">{{student.studentStandard}}</td>
+
+        </tr>
+        {% endfor %}
+      </table>
+
+
+  </div>
+  <div class="container">
+    <p><a id="six" class='btn btn-info' href="{% url 'student_app:update' pk=school_details.pk %}"><strong>Update School Details</strong></a></p>
+
+  </div>
+<div>
+<div class="container">
+  <p><a id="six" class='btn btn-info' href="{% url 'student_app:delete' pk=school_details.pk %}"><strong>Delete School</strong> </a></p>
+{% endblock %}
